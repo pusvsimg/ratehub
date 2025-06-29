@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 RateHub - 专业汇率分析平台</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">
+                    <i class="fas fa-coins"></i>
+                    RateHub
+                </h1>
+                <p class="subtitle">专业汇率分析平台 • 全球主要货币实时汇率 • 权威数据源</p>
+            </div>
+            <div class="last-update">
+                <i class="fas fa-clock"></i>
+                <span id="lastUpdate">正在加载...</span>
+            </div>
+        </header>
+
+        <!-- 汇率转换器 -->
+        <section class="converter-section">
+            <div class="converter-card">
+                <h2 class="section-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    货币转换器
+                </h2>
+                <div class="converter">
+                    <div class="input-group">
+                        <label for="fromAmount">金额</label>
+                        <input type="number" id="fromAmount" value="1" min="0" step="0.01">
+                    </div>
+                    <div class="currency-group">
+                        <div class="currency-select">
+                            <label for="fromCurrency">从</label>
+                            <select id="fromCurrency">
+                                <option value="USD">USD - 美元</option>
+                                <option value="EUR">EUR - 欧元</option>
+                                <option value="GBP">GBP - 英镑</option>
+                                <option value="JPY">JPY - 日元</option>
+                                <option value="CNY">CNY - 人民币</option>
+                                <option value="KRW">KRW - 韩元</option>
+                                <option value="HKD">HKD - 港币</option>
+                                <option value="CAD">CAD - 加元</option>
+                                <option value="AUD">AUD - 澳元</option>
+                                <option value="CHF">CHF - 瑞士法郎</option>
+                            </select>
+                        </div>
+                        <button class="swap-btn" id="swapBtn">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        <div class="currency-select">
+                            <label for="toCurrency">到</label>
+                            <select id="toCurrency">
+                                <option value="CNY">CNY - 人民币</option>
+                                <option value="USD">USD - 美元</option>
+                                <option value="EUR">EUR - 欧元</option>
+                                <option value="GBP">GBP - 英镑</option>
+                                <option value="JPY">JPY - 日元</option>
+                                <option value="KRW">KRW - 韩元</option>
+                                <option value="HKD">HKD - 港币</option>
+                                <option value="CAD">CAD - 加元</option>
+                                <option value="AUD">AUD - 澳元</option>
+                                <option value="CHF">CHF - 瑞士法郎</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="result">
+                        <div class="result-amount" id="resultAmount">0.00</div>
+                        <div class="exchange-rate" id="exchangeRate">汇率: 1 USD = 0.00 CNY</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主要汇率表格 -->
+        <section class="rates-section">
+            <h2 class="section-title">
+                <i class="fas fa-table"></i>
+                主要货币汇率 (基准: USD)
+            </h2>
+            <div class="rates-grid" id="ratesGrid">
+                <!-- 汇率卡片将通过JavaScript动态生成 -->
+            </div>
+        </section>
+
+        <!-- 专业图表导航 -->
+        <section class="chart-section">
+            <h2 class="section-title">
+                <i class="fas fa-external-link-alt"></i>
+                专业图表分析
+            </h2>
+            
+            <div class="chart-navigation-intro">
+                <p class="intro-text">
+                    <i class="fas fa-info-circle"></i>
+                    为了提供最专业、最稳定的图表分析体验，我们为您精选了业界权威的金融图表网站。
+                    点击下方链接即可访问专业的汇率分析工具。
+                </p>
+            </div>
+            
+            <!-- 专业图表网站导航 -->
+            <div class="chart-links-grid">
+                <!-- TradingView -->
+                <div class="chart-link-card featured">
+                    <div class="card-header">
+                        <div class="site-logo">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="site-info">
+                            <h3>TradingView</h3>
+                            <span class="site-tag recommended">推荐</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="site-description">全球领先的金融图表平台，提供专业的K线图、技术指标和实时数据分析。</p>
+                        <div class="features">
+                            <span class="feature-tag">实时数据</span>
+                            <span class="feature-tag">技术指标</span>
+                            <span class="feature-tag">K线图</span>
+                            <span class="feature-tag">社区分析</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://www.tradingview.com/chart/" target="_blank" class="chart-link-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            访问TradingView
+                        </a>
+                        <a href="https://www.tradingview.com/symbols/EURUSD/" target="_blank" class="chart-link-btn secondary">
+                            EUR/USD图表
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- XE.com -->
+                <div class="chart-link-card">
+                    <div class="card-header">
+                        <div class="site-logo">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <div class="site-info">
+                            <h3>XE.com</h3>
+                            <span class="site-tag reliable">可靠</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="site-description">权威的汇率数据提供商，提供准确的历史汇率图表和趋势分析。</p>
+                        <div class="features">
+                            <span class="feature-tag">历史数据</span>
+                            <span class="feature-tag">汇率计算</span>
+                            <span class="feature-tag">趋势分析</span>
+                            <span class="feature-tag">简洁界面</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://www.xe.com/currencycharts/" target="_blank" class="chart-link-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            访问XE图表
+                        </a>
+                        <a href="https://www.xe.com/currencycharts/?from=EUR&to=USD" target="_blank" class="chart-link-btn secondary">
+                            EUR/USD走势
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Yahoo Finance -->
+                <div class="chart-link-card">
+                    <div class="card-header">
+                        <div class="site-logo">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="site-info">
+                            <h3>Yahoo Finance</h3>
+                            <span class="site-tag popular">热门</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="site-description">雅虎财经提供全面的金融数据，包括汇率图表、新闻和市场分析。</p>
+                        <div class="features">
+                            <span class="feature-tag">市场新闻</span>
+                            <span class="feature-tag">财经数据</span>
+                            <span class="feature-tag">图表分析</span>
+                            <span class="feature-tag">免费使用</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://finance.yahoo.com/currencies" target="_blank" class="chart-link-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            访问Yahoo Finance
+                        </a>
+                        <a href="https://finance.yahoo.com/quote/EURUSD=X" target="_blank" class="chart-link-btn secondary">
+                            EUR/USD数据
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Investing.com -->
+                <div class="chart-link-card">
+                    <div class="card-header">
+                        <div class="site-logo">
+                            <i class="fas fa-analytics"></i>
+                        </div>
+                        <div class="site-info">
+                            <h3>Investing.com</h3>
+                            <span class="site-tag comprehensive">全面</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="site-description">综合性金融门户，提供详细的技术分析、经济日历和市场数据。</p>
+                        <div class="features">
+                            <span class="feature-tag">技术分析</span>
+                            <span class="feature-tag">经济日历</span>
+                            <span class="feature-tag">市场新闻</span>
+                            <span class="feature-tag">多语言</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://www.investing.com/currencies/" target="_blank" class="chart-link-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            访问Investing.com
+                        </a>
+                        <a href="https://www.investing.com/currencies/eur-usd" target="_blank" class="chart-link-btn secondary">
+                            EUR/USD分析
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- MarketWatch -->
+                <div class="chart-link-card">
+                    <div class="card-header">
+                        <div class="site-logo">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="site-info">
+                            <h3>MarketWatch</h3>
+                            <span class="site-tag news">新闻</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="site-description">道琼斯旗下的金融新闻网站，提供实时市场数据和专业分析。</p>
+                        <div class="features">
+                            <span class="feature-tag">实时新闻</span>
+                            <span class="feature-tag">市场分析</span>
+                            <span class="feature-tag">专家观点</span>
+                            <span class="feature-tag">权威来源</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://www.marketwatch.com/investing/currencies" target="_blank" class="chart-link-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            访问MarketWatch
+                        </a>
+                        <a href="https://www.marketwatch.com/investing/currency/eurusd" target="_blank" class="chart-link-btn secondary">
+                            EUR/USD新闻
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- OANDA -->
+                <div class="chart-link-card">
+                    <div class="card-header">
+                        <div class="site-logo">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="site-info">
+                            <h3>OANDA</h3>
+                            <span class="site-tag professional">专业</span>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p class="site-description">专业的外汇交易平台，提供精确的汇率数据和高级图表工具。</p>
+                        <div class="features">
+                            <span class="feature-tag">精确数据</span>
+                            <span class="feature-tag">历史回测</span>
+                            <span class="feature-tag">API接口</span>
+                            <span class="feature-tag">专业工具</span>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="https://www.oanda.com/currency-converter/" target="_blank" class="chart-link-btn primary">
+                            <i class="fas fa-external-link-alt"></i>
+                            访问OANDA
+                        </a>
+                        <a href="https://www.oanda.com/currency-converter/en/?from=EUR&to=USD&amount=1" target="_blank" class="chart-link-btn secondary">
+                            EUR/USD转换
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 使用指南 -->
+            <div class="chart-guide">
+                <h3><i class="fas fa-lightbulb"></i> 使用建议</h3>
+                <div class="guide-grid">
+                    <div class="guide-item">
+                        <div class="guide-icon">📊</div>
+                        <h4>专业分析</h4>
+                        <p>推荐使用 <strong>TradingView</strong> 进行深度技术分析，支持多种指标和绘图工具。</p>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">📈</div>
+                        <h4>历史数据</h4>
+                        <p>使用 <strong>XE.com</strong> 查看长期历史走势，数据准确可靠。</p>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">📰</div>
+                        <h4>市场资讯</h4>
+                        <p>关注 <strong>MarketWatch</strong> 和 <strong>Investing.com</strong> 获取最新市场动态。</p>
+                    </div>
+                    <div class="guide-item">
+                        <div class="guide-icon">🔧</div>
+                        <h4>专业工具</h4>
+                        <p>对于专业交易者，<strong>OANDA</strong> 提供精确的数据和API接口。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 RateHub 专业汇率分析平台. 数据来源于权威金融机构，仅供参考。</p>
+            <p>
+                <i class="fas fa-shield-alt"></i>
+                专业数据 • 实时更新 • 投资有风险，请谨慎决策
+            </p>
+        </footer>
+    </div>
+
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>正在获取最新汇率数据...</p>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
